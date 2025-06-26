@@ -59,12 +59,12 @@ def combine_pdfs_to_one(folder_path, search_data):
                         message = MIMEMultipart()
                         email_content = email
                         message['Subject'] = email_content
-                        message['From'] = 'moderator@rosholod.org'
+                        message['From'] = 'your email'
                         message['To'] = email
                         message_copy_for_moderator = MIMEMultipart()
                         message_copy_for_moderator['Subject'] = email_content
-                        message_copy_for_moderator['From'] = 'moderator@rosholod.org'
-                        message_copy_for_moderator['To'] = 'moderator@rosholod.org'
+                        message_copy_for_moderator['From'] = 'your email for duplicate'
+                        message_copy_for_moderator['To'] = 'your email for duplicate'
                         with open(current_pdf_path, 'rb') as fp:
                             att = MIMEApplication(fp.read(), _subtype="pdf")
                             att.add_header('Content-Disposition', 'attachment', filename=os.path.basename(current_pdf_path))
@@ -74,7 +74,7 @@ def combine_pdfs_to_one(folder_path, search_data):
                             
                             # Send the email via SMTP
                             with smtplib.SMTP_SSL('smtp.mail.ru', 465) as smtp:
-                                smtp.login('moderator@rosholod.org', 'bWT8rBssWzsrtFSYF0nf')
+                                smtp.login('email', 'smtp code')
                                 smtp.send_message(message)
                                 smtp.send_message(message_copy_for_moderator)
                             first_8_lines = text.splitlines()[:10]
